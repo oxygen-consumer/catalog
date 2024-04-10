@@ -20,4 +20,5 @@ public class GradeDto {
     private CourseDto course;
 
     private StudentDto student;
+
 }

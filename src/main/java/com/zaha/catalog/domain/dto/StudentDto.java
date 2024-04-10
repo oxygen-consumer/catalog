@@ -26,6 +26,6 @@ public class StudentDto {
 
     private Set<CourseDto> enrolledCourses;
 
-    private List<GradeEntity> grades;
+    private List<GradeDto> grades;
 
 }

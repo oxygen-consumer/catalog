@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -24,5 +25,7 @@ public class CourseDto {
         private Date endDate;
 
         private TeacherDto teacher;
+
+        private Set<StudentDto> enrolledStudents;
 
 }
