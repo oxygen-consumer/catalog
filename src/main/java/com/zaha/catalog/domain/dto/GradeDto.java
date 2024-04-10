@@ -13,8 +13,6 @@ public class GradeDto {
 
     private Long id;
 
-    private String name;
-
     private Integer gradeValue;
 
     private CourseDto course;
