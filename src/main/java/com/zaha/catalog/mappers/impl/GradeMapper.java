@@ -4,7 +4,9 @@ import com.zaha.catalog.domain.dto.GradeDto;
 import com.zaha.catalog.domain.entities.GradeEntity;
 import com.zaha.catalog.mappers.Mapper;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class GradeMapper implements Mapper<GradeEntity, GradeDto> {
 
     private final ModelMapper modelMapper;

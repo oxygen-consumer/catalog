@@ -4,7 +4,9 @@ import com.zaha.catalog.domain.dto.CourseDto;
 import com.zaha.catalog.domain.entities.CourseEntity;
 import com.zaha.catalog.mappers.Mapper;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CourseMapper implements Mapper<CourseEntity, CourseDto> {
 
     private final ModelMapper modelMapper;
