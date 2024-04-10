@@ -15,7 +15,7 @@ public class GradeDto {
 
     private String name;
 
-    private Integer value;
+    private Integer gradeValue;
 
     private CourseDto course;
 

@@ -12,14 +12,15 @@ import org.hibernate.annotations.SQLRestriction;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "grades")
 public class GradeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "grade_id_seq")
     private Long id;
 
-    @SQLRestriction("value >= 1 AND value <= 10")
-    private double value;
+    @SQLRestriction("gradeValue >= 1 AND gradeValue <= 10")
+    private double gradeValue;
 
     @ManyToOne
     private CourseEntity course;
