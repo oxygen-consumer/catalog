@@ -22,6 +22,17 @@ public class StudentService {
         this.studentMapper = studentMapper;
     }
 
+    /*
+    CREATE
+     */
+    public StudentDto createStudent(StudentDto studentDto) {
+        StudentEntity studentEntity = studentMapper.mapFrom(studentDto);
+        return studentMapper.mapTo(studentRepository.save(studentEntity));
+    }
+
+    /*
+    READ
+     */
     public List<StudentDto> getAllStudents() {
         return StreamSupport.stream(studentRepository
                                 .findAll()
@@ -34,6 +45,34 @@ public class StudentService {
 
     public Optional<StudentDto> getStudentById(Long id) {
         return studentRepository.findById(id).map(studentMapper::mapTo);
+    }
+
+    public boolean exists(Long id) {
+        return studentRepository.existsById(id);
+    }
+
+    /*
+    UPDATE
+     */
+
+    public StudentDto updateStudent(StudentDto studentDto) {
+        StudentEntity studentEntity = studentMapper.mapFrom(studentDto);
+        return studentMapper.mapTo(studentRepository.save(studentEntity));
+    }
+
+    public StudentDto patchStudent(Long id, StudentDto studentDto) {
+        StudentEntity studentEntity = studentRepository.findById(id).orElseThrow();
+        studentEntity.setName(studentDto.getName());
+        studentEntity.setBirthDate(studentDto.getBirthDate());
+        studentEntity.setEmail(studentDto.getEmail());
+        return studentMapper.mapTo(studentRepository.save(studentEntity));
+    }
+
+    /*
+    DELETE
+     */
+    public void deleteStudent(Long id) {
+        studentRepository.deleteById(id);
     }
 
 }

@@ -21,6 +21,17 @@ public class TeacherService {
         this.teacherMapper = teacherMapper;
     }
 
+    /*
+    CREATE
+     */
+    public TeacherDto createTeacher(TeacherDto teacherDto) {
+        TeacherEntity teacherEntity = teacherMapper.mapFrom(teacherDto);
+        return teacherMapper.mapTo(teacherRepository.save(teacherEntity));
+    }
+
+    /*
+    READ
+     */
     public List<TeacherDto> getAllTeachers() {
         return StreamSupport.stream(teacherRepository
                                 .findAll()
@@ -33,6 +44,33 @@ public class TeacherService {
 
     public Optional<TeacherDto> getTeacherById(Long id) {
         return teacherRepository.findById(id).map(teacherMapper::mapTo);
+    }
+
+    public boolean exists(Long id) {
+        return teacherRepository.existsById(id);
+    }
+
+    /*
+    UPDATE
+     */
+    public TeacherDto updateTeacher(TeacherDto teacherDto) {
+        TeacherEntity teacherEntity = teacherMapper.mapFrom(teacherDto);
+        return teacherMapper.mapTo(teacherRepository.save(teacherEntity));
+    }
+
+    public TeacherDto patchTeacher(Long id, TeacherDto teacherDto) {
+        TeacherEntity teacherEntity = teacherRepository.findById(id).orElseThrow();
+        teacherEntity.setName(teacherDto.getName());
+        teacherEntity.setBirthDate(teacherDto.getBirthDate());
+        teacherEntity.setEmail(teacherDto.getEmail());
+        return teacherMapper.mapTo(teacherRepository.save(teacherEntity));
+    }
+
+    /*
+    DELETE
+     */
+    public void deleteTeacher(Long id) {
+        teacherRepository.deleteById(id);
     }
 
 }
